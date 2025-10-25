@@ -13,6 +13,14 @@ private:
 public: 
     Goat()                          { name = ""; age = 0; color = ""; }
     // write three more constructors
+    //Partial Constructor: requires a string variable to replace the name of the new goat.
+    Goat(string n) {name = n; age = 0; color = "";};
+
+    //Partial Constructor: requires a string and int variables to replace the name and age of the new goat.
+    Goat(string n, int a) {name = n; age = a; color = "";};
+
+    //Complete Constructor: requires two string variables and an int variable to replace the name, age, and color of the new goat.
+    Goat(string n, int a, string c) {name = n; age = a; color = c;};
 
     // setters and getters
     void set_name(string n)         { name = n; };
