@@ -1,3 +1,8 @@
+//Comsc-210|Ethan Aylard|Lab-23
+//IDE Used: Visual Studio Code
+//Program Description: This program is meant to keep track of goats by using a menu that allows the user to add, delete, or view all the goats.
+
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
