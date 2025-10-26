@@ -7,35 +7,43 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
-
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
+//Function Prototypes:
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 int main_menu();
 
-int main() {
-    srand(time(0));
-    bool again = true;
 
-    // read & populate arrays for names and colors
+
+int main() {
+    //making the program truly random:
+    srand(time(0));
+    //declaring a bool variable and the list of the goats:
+    bool again = true;
+    list<Goat> goats;
+
+    //read & populate arrays for names and colors
+    //Filling array names[] with all the names in names.txt
     ifstream fin("names.txt");
     string names[SZ_NAMES];
     int i = 0;
     while (fin >> names[i++]);
     fin.close();
+
+    //Filling array colors[] with all the names in colors.txt
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     i = 0;
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    list<Goat> goats;
+    //The main brains of the program: depending on the choice of the user each case could be activated:
     while(again){
         switch(main_menu()){
             case 1:
@@ -55,7 +63,7 @@ int main() {
                 break;
 
             default:
-                cout << "Error! Try again.";
+                cout << "Error! Input does not match the width of the menu.";
         }
 
     }
@@ -86,12 +94,19 @@ int main_menu (){
         endl << "Choice --> ";
 
         cin >> choice;
-        if (!cin.fail())
+        if (!cin.fail()){
+            
+            if (choice < 1 || choice > 4){
+                cout << "Invalid choice. Please try again." << endl;
+            }
+            else
             valid = true;
-        else
+        }
+        else{
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Invalid choice. Please try again." << endl;
+        }
 
     }
 
@@ -117,10 +132,12 @@ int select_goat(list<Goat> trip){
         
         }
 
-        else
+        else{
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Invalid choice. Please try again." << endl;
+        }
+
 
     return choice;
 }
