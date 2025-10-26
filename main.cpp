@@ -90,16 +90,23 @@ void delete_goat(list<Goat> &trip){
 
 
 void add_goat(list<Goat> &trip, string names [], string colors []){
-int age = rand() % MAX_AGE;
-string name = names[rand() % SZ_NAMES];
-string color = colors[rand() % SZ_COLORS];
 
-trip.push_back
+    int age = rand() % MAX_AGE;
+    string name = names[rand() % SZ_NAMES];
+    string color = colors[rand() % SZ_COLORS];
+
+    cout << "\nAdding goat: " << name << ", color: "
+    << color << ", age: " << age << endl;
+    
+    trip.push_back(Goat(name, age, color));
 
 }
 
 
 void display_trip(list<Goat> trip){
+for(int i = 0; i < trip.size(); i++){
+cout << "[" << i+1 << "] "
 
+}
 
 }
