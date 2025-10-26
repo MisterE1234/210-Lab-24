@@ -21,7 +21,7 @@ int main_menu();
 
 int main() {
     srand(time(0));
-    bool again;
+    bool again = true;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -36,8 +36,32 @@ int main() {
     fin1.close();
 
     list<Goat> goats;
+    while(again){
+        switch(main_menu()){
+            case 1:
+                add_goat(goats, names, colors);
+                break;
+            
+            case 2:
+                delete_goat(goats);
+                break;
 
+            case 3:
+                display_trip(goats);
+                break;
 
+            case 4:
+                again = false;
+                break;
+
+            default:
+                cout << "Error! Try again.";
+        }
+
+    }
+
+    //clearing the list:
+    goats.clear();
 
 
     return 0;
@@ -83,7 +107,7 @@ int select_goat(list<Goat> trip){
 
     cin >> choice;
         if (!cin.fail()){
-            
+
             if(choice > trip.size()){
             cout << "Invalid choice. Please try again." << endl;
             }
