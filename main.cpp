@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+
 #include "Goat.h"
 using namespace std;
 
@@ -88,13 +89,17 @@ void delete_goat(list<Goat> &trip){
 }
 
 
-void add_goat(list<Goat> &trip, string [], string []){
+void add_goat(list<Goat> &trip, string names [], string colors []){
+int age = rand() % MAX_AGE;
+string name = names[rand() % SZ_NAMES];
+string color = colors[rand() % SZ_COLORS];
 
+trip.push_back
 
 }
 
 
 void display_trip(list<Goat> trip){
 
-    
+
 }
