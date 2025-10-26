@@ -34,6 +34,8 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    list<Goat> goats;
+
 
 
 
@@ -59,11 +61,40 @@ int main_menu (){
         endl << "Choice --> ";
 
         cin >> choice;
-        if (cin.fail)
-
+        if (!cin.fail())
+            valid = true;
+        else
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Invalid choice. Please try again." << endl;
 
     }
 
 
     return choice;
+}
+
+int select_goat(list<Goat> trip){
+
+
+
+}
+
+
+void delete_goat(list<Goat> &trip){
+
+
+
+}
+
+
+void add_goat(list<Goat> &trip, string [], string []){
+
+
+}
+
+
+void display_trip(list<Goat> trip){
+
+    
 }
