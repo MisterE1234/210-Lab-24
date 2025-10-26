@@ -46,22 +46,27 @@ int main() {
     //The main brains of the program: depending on the choice of the user each case could be activated:
     while(again){
         switch(main_menu()){
+            //Add a goat to the end of the train of goats
             case 1:
                 add_goat(goats, names, colors);
                 break;
             
+            //Delete a goat from the user's specified position:
             case 2:
                 delete_goat(goats);
                 break;
 
+            //Display all the goats:
             case 3:
                 display_trip(goats);
                 break;
 
+            //Exit out of the program:
             case 4:
                 again = false;
                 break;
 
+            //In case of error:
             default:
                 cout << "Error! Input does not match the width of the menu.";
         }
@@ -78,8 +83,6 @@ int main() {
 //main_menu(): This will display and loop a menu until the user inputs a valid choice.
 //requires: none.
 //returns: an int variable of the user's choice.
-
-
 int main_menu (){
     int choice;
     bool valid = false;
@@ -93,16 +96,17 @@ int main_menu (){
         endl << "[4] Quit" <<
         endl << "Choice --> ";
 
+        //Checking if the choice is valid:
         cin >> choice;
-        if (!cin.fail()){
+        if (!cin.fail()){ // Making sure the user's input is an integer.
             
-            if (choice < 1 || choice > 4){
+            if (choice < 1 || choice > 4){ //Making sure the user's input is between 1 and 4;
                 cout << "Invalid choice. Please try again." << endl;
             }
-            else
+            else //If the input is valid:
             valid = true;
         }
-        else{
+        else{ //If the input is not an integer:
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Invalid choice. Please try again." << endl;
@@ -114,25 +118,31 @@ int main_menu (){
     return choice;
 }
 
+//select_goat(): Get the position of a user chosen goat
+//requires: a list of Goat elements
+//returns:an int variable that holds the position of the chosen goat
 int select_goat(list<Goat> trip){
     int choice;
     bool valid;
+
+    //Displaying all the goats on the trip:
     display_trip(trip);
     cout << "Which goat would you choose?" << endl;
 
+    //Checking if the choice is valid:
     cin >> choice;
-        if (!cin.fail()){
+        if (!cin.fail()){// Making sure the user's input is an integer.
 
-            if(choice > trip.size()){
+            if(choice > trip.size() || choice < 1){ //Making sure the user's input is between 1 and the size of the list;
             cout << "Invalid choice. Please try again." << endl;
             }
 
-            else
+            else //If the input is valid:
             valid = true;
         
         }
 
-        else{
+        else{ //If the input is not an integer:
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Invalid choice. Please try again." << endl;
@@ -142,7 +152,9 @@ int select_goat(list<Goat> trip){
     return choice;
 }
 
-
+//delete_goat(): removes a goat of the user's choice
+//requires: a list of Goat elements
+//returns: none
 void delete_goat(list<Goat> &trip){
 auto it = trip.begin();
 int pos = select_goat(trip) - 1;
@@ -152,7 +164,9 @@ trip.erase(it);
 
 }
 
-
+//add_goat(): adds a goat to the end of list of Goat elements
+//requires: a list of Goat elements and two arrays of strings
+//returns: none
 void add_goat(list<Goat> &trip, string names [], string colors []){
 
     int age = rand() % MAX_AGE;
