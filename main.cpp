@@ -64,6 +64,7 @@ int main() {
             //Exit out of the program:
             case 4:
                 again = false;
+                cout << "Quiting Program." << endl;
                 break;
 
             //In case of error:
@@ -123,10 +124,11 @@ int main_menu (){
 //returns:an int variable that holds the position of the chosen goat
 int select_goat(list<Goat> trip){
     int choice;
-    bool valid;
+    bool valid = false;
 
     //Displaying all the goats on the trip:
     display_trip(trip);
+    while(!valid){
     cout << "Which goat would you choose?" << endl;
 
     //Checking if the choice is valid:
@@ -147,6 +149,8 @@ int select_goat(list<Goat> trip){
             cin.ignore(1000, '\n');
             cout << "Invalid choice. Please try again." << endl;
         }
+
+    }
 
 
     return choice;
@@ -180,14 +184,13 @@ void add_goat(list<Goat> &trip, string names [], string colors []){
 
 }
 
-
+//display_trip(): displays the list of Goat elements
+//requires: a list of Goat elements
+//returns: none
 void display_trip(list<Goat> trip){
     int i = 1;
-    for(Goat g : trip){
-        cout << "[" << i << "] " << g.get_name() 
-        << " (" << g.get_age() << ", " << g.get_color() 
-        << ")" << endl;
-
+    for(Goat g : trip){ //displaying each goat for as long as the length of the list
+        cout << "[" << i << "] " << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")" << endl;
         i++;
     }
 
