@@ -40,3 +40,30 @@ int main() {
     return 0;
 }
 
+//main_menu(): This will display and loop a menu until the user inputs a valid choice.
+//requires: none.
+//returns: an int variable of the user's choice.
+
+
+int main_menu (){
+    int choice;
+    bool valid = false;
+
+    //Display the menu with a while loop.
+    while (!valid){
+        cout << "\n*** GOAT MANAGER 3001 ***\n";
+        cout << "[1] Add a goat" << 
+        endl << "[2] Delete a goat" << 
+        endl << "[3] List goats" <<
+        endl << "[4] Quit" <<
+        endl << "Choice --> ";
+
+        cin >> choice;
+        if (cin.fail)
+
+
+    }
+
+
+    return choice;
+}
