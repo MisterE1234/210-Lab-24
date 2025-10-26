@@ -76,15 +76,38 @@ int main_menu (){
 }
 
 int select_goat(list<Goat> trip){
+    int choice;
+    bool valid;
+    display_trip(trip);
+    cout << "Which goat would you choose?" << endl;
 
+    cin >> choice;
+        if (!cin.fail()){
+            
+            if(choice > trip.size()){
+            cout << "Invalid choice. Please try again." << endl;
+            }
 
+            else
+            valid = true;
+        
+        }
 
+        else
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Invalid choice. Please try again." << endl;
+
+    return choice;
 }
 
 
 void delete_goat(list<Goat> &trip){
+auto it = trip.begin();
+int pos = select_goat(trip) - 1;
 
-
+advance(it, pos);
+trip.erase(it);
 
 }
 
@@ -109,6 +132,8 @@ void display_trip(list<Goat> trip){
         cout << "[" << i << "] " << g.get_name() 
         << " (" << g.get_age() << ", " << g.get_color() 
         << ")" << endl;
+
+        i++;
     }
 
 }
