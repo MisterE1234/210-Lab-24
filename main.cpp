@@ -6,17 +6,17 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 //Function Prototypes:
-int select_goat(list<Goat> trip);
-void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
-void display_trip(list<Goat> trip);
+int select_goat(set<Goat> trip);
+void delete_goat(set<Goat> &trip);
+void add_goat(set<Goat> &trip, string [], string []);
+void display_trip(set<Goat> trip);
 int main_menu();
 
 
@@ -24,9 +24,9 @@ int main_menu();
 int main() {
     //making the program truly random:
     srand(time(0));
-    //declaring a bool variable and the list of the goats:
+    //declaring a bool variable and the set of the goats:
     bool again = true;
-    list<Goat> goats;
+    set<Goat> goats;
 
     //read & populate arrays for names and colors
     //Filling array names[] with all the names in names.txt
@@ -74,7 +74,7 @@ int main() {
 
     }
 
-    //clearing the list:
+    //clearing the set:
     goats.clear();
 
 
@@ -120,9 +120,9 @@ int main_menu (){
 }
 
 //select_goat(): Get the position of a user chosen goat
-//requires: a list of Goat elements
+//requires: a set of Goat elements
 //returns:an int variable that holds the position of the chosen goat
-int select_goat(list<Goat> trip){
+int select_goat(set<Goat> trip){
     int choice;
     bool valid = false;
 
@@ -157,9 +157,9 @@ int select_goat(list<Goat> trip){
 }
 
 //delete_goat(): removes a goat of the user's choice
-//requires: a list of Goat elements
+//requires: a set of Goat elements
 //returns: none
-void delete_goat(list<Goat> &trip){
+void delete_goat(set<Goat> &trip){
 auto it = trip.begin();
 int pos = select_goat(trip) - 1;
 
@@ -168,10 +168,10 @@ trip.erase(it);
 
 }
 
-//add_goat(): adds a goat to the end of list of Goat elements
-//requires: a list of Goat elements and two arrays of strings
+//add_goat(): adds a goat to set of Goat elements
+//requires: a set of Goat elements and two arrays of strings
 //returns: none
-void add_goat(list<Goat> &trip, string names [], string colors []){
+void add_goat(set<Goat> &trip, string names [], string colors []){
 
     int age = rand() % MAX_AGE;
     string name = names[rand() % SZ_NAMES];
@@ -180,14 +180,14 @@ void add_goat(list<Goat> &trip, string names [], string colors []){
     cout << "\nAdding goat: " << name << ", color: "
     << color << ", age: " << age << endl;
     
-    trip.push_back(Goat(name, age, color));
+    trip.insert(Goat(name, age, color));
 
 }
 
-//display_trip(): displays the list of Goat elements
+//display_trip(): displays the set of Goat elements
 //requires: a list of Goat elements
 //returns: none
-void display_trip(list<Goat> trip){
+void display_trip(set<Goat> trip){
     int i = 1;
     for(Goat g : trip){ //displaying each goat for as long as the length of the list
         cout << "[" << i << "] " << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")" << endl;
